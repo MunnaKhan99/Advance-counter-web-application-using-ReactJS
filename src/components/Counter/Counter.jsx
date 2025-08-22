@@ -31,6 +31,7 @@ const Counter = () => {
     return (
         <div className=' flex justify-center items-center h-screen bg-gradient-to-r from-indigo-500 via-purple-500'>
             <div className='bg-white shadow-2xl p-10 w-96 text-center'>
+                
                 <h1 className='text-3xl font-bold text-gray-800 m-6'>Counter App</h1>
 
                 <div className={` text-6xl font-extrabold mb-6 transition-all duration-300  ${count > 50 ? 'text-green-600' : count < 50 ? 'text-red-600' : 'text-gray-700'}`}>
