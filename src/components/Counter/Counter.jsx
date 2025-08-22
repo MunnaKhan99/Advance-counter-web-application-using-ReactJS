@@ -8,14 +8,7 @@ const Counter = () => {
         return saved !== null ?Number(saved):0;
     });
     const [step,setStep] = useState(1);
-
-    // after loading component the value will load form localstorage
-    // useEffect(()=>{
-    //     const savedCount = localStorage.getItem("counterValue");
-    //     if(savedCount !== null){
-    //         setCount(Number(savedCount));
-    //     }
-    // },[]);
+    
     useEffect(()=>{
         localStorage.setItem("counterValue",count);
     },[count]);
@@ -68,7 +61,7 @@ const Counter = () => {
                     <button onClick={handleIncreament}
                     disabled={count + step > 100}
                     className={`flex-1 flex items-center justify-center bg-green-500 hover:bg-green-600
-                     text-white py-3 rounded-xl shadow-lg transition-all duration-300 ${count - step > 100 ? 'bg-gray-400 cursor-not-allowed':'bg-green-500 hover:bg-green-600'}`}><FaPlus /></button>
+                     text-white py-3 rounded-xl shadow-lg transition-all duration-300 ${count + step >= 100 ? 'bg-gray-400 cursor-not-allowed':'bg-green-500 hover:bg-green-600'}`}><FaPlus /></button>
                 </div>
             </div>
         </div>
