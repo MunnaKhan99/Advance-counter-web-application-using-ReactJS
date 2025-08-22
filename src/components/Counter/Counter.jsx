@@ -4,14 +4,19 @@ import { FaMinus } from "react-icons/fa6";
 
 const Counter = () => {
     const [count, setCount] = useState(0);
+    const [step,setStep] = useState(1);
 
 
     const handleIncreament = () => {
-        setCount(count + 1);
+        if(count + step <=100){
+            setCount(count+step)
+        }
     }
 
     const handleDecreament = () => {
-        setCount(count - 1);
+        if(count - step >=0){
+            setCount(count-step)
+        }
     }
 
     const handleReset = () => {
@@ -25,16 +30,28 @@ const Counter = () => {
                     {count}
 
                 </div>
+
+                <input 
+                type="number"
+                value={step}
+                onChange={(e) => setStep(Number(e.target.value))}  
+                className='border p-2 mb-4 text-center'
+                placeholder="5"/>
+
                 <div className='flex justify-between gap-4'>
                     {/* increment button */}
-                    <button onClick={handleDecreament} className='flex-1 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl shadow-lg transition-all duration-300'><FaMinus /></button>
+                    <button onClick={handleDecreament} 
+                    disabled={count-step < 0}
+                    className={`flex-1 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl shadow-lg transition-all duration-300 ${count-step < 0 ? 'cursor-not-allowed':'bg-red-500'}`}><FaMinus /></button>
 
                     {/* Reset button */}
                     <button onClick={handleReset} className='flex-1 bg-gray-400 hover:bg-gray-500 text-white py-3 rounded-xl shadow-lg transition-all duration-300'>Reset</button>
 
                     {/* Decrement button */}
-                    <button onClick={handleIncreament} className='flex-1 flex items-center justify-center bg-green-500 hover:bg-green-600
-                     text-white py-3 rounded-xl shadow-lg transition-all duration-300'><FaPlus /></button>
+                    <button onClick={handleIncreament}
+                    disabled={count - step > 100}
+                    className={`flex-1 flex items-center justify-center bg-green-500 hover:bg-green-600
+                     text-white py-3 rounded-xl shadow-lg transition-all duration-300 ${count - step > 100 ? 'bg-gray-400 cursor-not-allowed':'bg-green-500 hover:bg-green-600'}`}><FaPlus /></button>
                 </div>
             </div>
         </div>
